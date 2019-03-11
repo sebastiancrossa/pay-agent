@@ -19,18 +19,17 @@ class AddClient extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        const newClient = this.state;
+        const {
+            state,
+            props: { firestore, history }
+        } = this
 
-        // DESTRUCT
-        const { firestore } = this.props;
-
-        // Checking the balance
-        if (newClient.balance === '') {
-            newClient.balance = 0;
+        const newClient = {
+            ...state,
+            balance: state.balance === '' ? '0' : state.balance
         }
 
-        firestore.add({ collection: 'clients' }, newClient)
-            .then(() => this.props.history.push('/'));
+        firestore.add({ collection: 'clients' }, newClient).then(() => history.push('/'))
 
     };
 
