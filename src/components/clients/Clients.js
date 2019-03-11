@@ -8,6 +8,9 @@ import { firestoreConnect } from 'react-redux-firebase';
 import UUID from 'uuid'
 import { firestore } from 'firebase';
 
+// Component Imports
+import Spinner from '../layout/Spinner'
+
 class Clients extends Component {
     render() {
         const { clients } = this.props;
@@ -56,7 +59,7 @@ class Clients extends Component {
                 </div>
             )
         } else {
-            return <h1>Loading</h1>
+            return <Spinner />
         }
     }
 }
